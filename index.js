@@ -9,6 +9,10 @@ const REDIRECT_URI = process.env['THREADS_OAUTH_REDIRECT_URI'];
 const ENDPOINT_URL = 'https://graph.threads.net';
 
 app.get('/' , async(req,res)=>{
+    console.log(`APP_ID=${APP_ID}`);
+    console.log(`APP_SECRET=${APP_SECRET}`);
+    console.log(`REDIRECT_URI=${REDIRECT_URI}`);
+    console.log(`ENDPOINT_URL=${ENDPOINT_URL}`);
     res.send('hello');
 });
 
@@ -44,18 +48,18 @@ app.get('/auth/redirectCallback' , async (req,res)=>{
 
 const getShortAccessToken = async (code) => {
     try {
+        const data = new URLSearchParams();
+        data.append('client_id', APP_ID);
+        data.append('client_secret', APP_SECRET);
+        data.append('grant_type', 'authorization_code');
+        data.append('redirect_uri', REDIRECT_URI);
+        data.append('code' , code);
         const result = await fetch(ENDPOINT_URL + '/oauth/access_token', {
             method: 'POST',
             headers: {
                 'Content-Type' : 'application/x-www-form-urlencoded; charset=utf-8'
             },
-            body: {
-                client_id: APP_ID,
-                client_secret: APP_SECRET,
-                grant_type: 'authorization_code',
-                redirect_uri: REDIRECT_URI,
-                code: code,
-            }
+            body: data.toString(),
         });
         const resultJson = await result.json();
         console.log("short access token result=" + JSON.stringify(resultJson));
