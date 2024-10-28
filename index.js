@@ -8,6 +8,10 @@ const APP_SECRET = process.env['THREADS_APP_SECRET'];
 const REDIRECT_URI = process.env['THREADS_OAUTH_REDIRECT_URI'];
 const ENDPOINT_URL = 'https://graph.threads.net';
 
+app.get('/' , async(req,res)=>{
+    res.send('hello');
+});
+
 app.get('/auth/makeAuthorizeUrl' , async(req,res)=>{
     const params = {
         client_id: APP_ID,
