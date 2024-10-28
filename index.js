@@ -76,9 +76,10 @@ const changeShortAccessToken2LongAccessToken = async(shortAccessTokenResult) => 
     }
 };
 
-app.listen((err)=>{
+app.listen(port, (err)=>{
     if(err) {
-        throw new Error('error happened in listen');
+        console.log(`error happened during app#listen`);
+        throw err;
     }
-    console.log('server listened by port' + String(port) + '...');
+    console.log('server listened by port ' + String(port) + '...');
 });
