@@ -45,6 +45,7 @@ app.get('/auth/redirectCallback' , async (req,res)=>{
 const getShortAccessToken = async (code) => {
     try {
         const result = await fetch(ENDPOINT_URL + '/oauth/access_token', {
+            method: 'POST',
             headers: {
                 'Content-Type' : 'application/x-www-form-urlencoded; charset=utf-8'
             },
