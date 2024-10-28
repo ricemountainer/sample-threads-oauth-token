@@ -75,12 +75,13 @@ const getShortAccessToken = async (code) => {
 
 const changeShortAccessToken2LongAccessToken = async(shortAccessTokenResult) => {
     try {
-        const url = ENDPOINT_URL + `/access_token?grant_type=th_exchange_token&client_secret${APP_SECRET}&access_token=${shortAccessTokenResult.access_token}`;
+        const url = ENDPOINT_URL + `/access_token?grant_type=th_exchange_token&client_secret=${APP_SECRET}&access_token=${shortAccessTokenResult.access_token}`;
         const result = await fetch (url, );
         const resultJson = await result.json();
         console.log('change ShortAccessToken to LongAccessToken result=' + JSON.stringify(resultJson));
         return resultJson;
     } catch(error) {
+        console.log('error happened in changeShortAccessToken2LongAccessToken;' + JSON.stringify(error));
         throw error;
     }
 };
