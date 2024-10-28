@@ -31,7 +31,8 @@ app.get('/auth/makeAuthorizeUrl' , async(req,res)=>{
 });
 
 app.get('/auth/redirectCallback' , async (req,res)=>{
-    const msg = `hello /callback;req=${JSON.stringify(req.query)}`;
+    //const msg = `hello /callback;req=${JSON.stringify(req.query)}`;
+    let msg = '';
     try {
         if (req.query.code) {
             const code = req.query.code;
@@ -39,8 +40,10 @@ app.get('/auth/redirectCallback' , async (req,res)=>{
 
             const shortAccessTokenResult = getShortAccessToken(code);
             const longAccessTokenResult = changeShortAccessToken2LongAccessToken(shortAccessTokenResult);
-
+            msg = JSON.stringify(longAccessTokenResult);
         }
+
+        res.send('result=' + msg);
     } catch(error) {
         throw error;
     }
@@ -65,6 +68,7 @@ const getShortAccessToken = async (code) => {
         console.log("short access token result=" + JSON.stringify(resultJson));
         return resultJson;
     } catch(error) {
+        console.log('error happened in getShortAccessToken;' + JSON.stringify(error));
         throw error;
     }
 };
