@@ -38,8 +38,8 @@ app.get('/auth/redirectCallback' , async (req,res)=>{
             const code = req.query.code;
             console.log(`code=${code}`);
 
-            const shortAccessTokenResult = getShortAccessToken(code);
-            const longAccessTokenResult = changeShortAccessToken2LongAccessToken(shortAccessTokenResult);
+            const shortAccessTokenResult = await getShortAccessToken(code);
+            const longAccessTokenResult = await changeShortAccessToken2LongAccessToken(shortAccessTokenResult);
             msg = JSON.stringify(longAccessTokenResult);
         }
 
