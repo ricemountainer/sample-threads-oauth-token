@@ -1,7 +1,6 @@
 const express = require('express');
 const app = express();
 const port = process.env['PORT'] || 5000;
-//https://qiita.com/taoka-toshiaki/items/e606e2cfa31c6e2ed771
 
 const APP_ID = process.env['THREADS_APP_ID'];
 const APP_SECRET = process.env['THREADS_APP_SECRET'];
@@ -9,10 +8,6 @@ const REDIRECT_URI = process.env['THREADS_OAUTH_REDIRECT_URI'];
 const ENDPOINT_URL = 'https://graph.threads.net';
 
 app.get('/' , async(req,res)=>{
-    console.log(`APP_ID=${APP_ID}`);
-    console.log(`APP_SECRET=${APP_SECRET}`);
-    console.log(`REDIRECT_URI=${REDIRECT_URI}`);
-    console.log(`ENDPOINT_URL=${ENDPOINT_URL}`);
     res.send('hello');
 });
 
