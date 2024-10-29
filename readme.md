@@ -5,7 +5,8 @@ Threads APIのLong-Lived OAuth Tokenを取得するまでの一連の処理を�
 # 使い方
 
 1. Herokuに空のアプリを作成します。
-2. `THREADS_APP_ID`、`THREADS_APP_SECRET`、`THREADS_OAUTH_REDIRECT_URI`の環境変数をHerokuアプリに設定します。`THREADS_OAUTH_REDIRECT_URI`は「HerokuアプリのURL+`/auth/makeAuthorizeUrl`」に設定します。この設定はThreads Appのユースケース＞カスタマイズ＞Settingsの「コールバックURLをリダイレクト」と同値にします。
+2. `THREADS_APP_ID`、`THREADS_APP_SECRET`、`THREADS_OAUTH_REDIRECT_URI`の環境変数をHerokuアプリに設定します。`THREADS_OAUTH_REDIRECT_URI`は「HerokuアプリのURL+`/auth/makeAuthorizeUrl`」に設定します。これら設定はThreads Appのユースケース＞カスタマイズ＞Settingsで設定・確認できます。  
+   ![Threads API use case設定画面のスクリーンショット](./01.png)
 3. 本リポジトリを`git clone`します。
 4. 1.のアプリのGit URLを設定します(例: `git remote add heroku ...`)
    参考:https://devcenter.heroku.com/articles/git#for-an-existing-app
@@ -47,6 +48,7 @@ Threads APIのLong-Lived OAuth Tokenを取得するまでの一連の処理を�
         });
         const resultJson = await result.json();
       ```
+
     以下のような戻り値が返却されます。
     ```json
     {"id":"18192012010201024"}
@@ -69,6 +71,7 @@ Threads APIのLong-Lived OAuth Tokenを取得するまでの一連の処理を�
         });
         const resultJson = await result.json();
      ```
+
     以下のような戻り値が返却されます。これで投稿は成功しています。
     ```json
     {"id":"18910345817601024"}
